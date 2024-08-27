@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/estilo.css">
+    <script src="../assets/js/jscript.js"></script>
+    <title> Cadastro de Pessoas </title>
+</head>
+<body>
+    <!-- envia os dados Formulário para o PHP incluir o registro no Banco de Dados -->
+    <form method="post" action="../transacoes/clientes/inclusao_pes.php">
+        <!-- elementos de input do Form -->
+        <label for="nome">Nome:<br> 
+            <input type="text" name="nome_comp" required>
+        </label><br>
+        <label for="">Qual seu Sexo?</label><br>
+        <select id="sexo" name="sexo">
+          <option value="FEMININO">Feminino</option>
+          <option value="MASCULINO">Masculino</option>
+          <option value="OUTRO">Outro</option>
+        </select>
+        </label><br>
+        <label for="idade">Data Nasc:<br>
+            <input type="date" name="dta_nasc" required>
+        </label><br>
+        <label for="cpf">Cpf:<br> 
+            <input type="text" maxlength="14" OnKeyPress="formatar('###.###.###-##',this)" id="cpf" name="cpf" onchange="document.getElementById('validation').innerHTML = validaCPF(this.value)" required>
+            <div><span id="validation"></span></div>
+        </label><br>
+        <!-- classe p/ estilizar os botões do Form no CSS -->
+        <div class="botoes">
+            <!-- Botão que submete o formulário para o PHP indicado no action do Formulário -->
+            <button type="submit"> Enviar </button>
+            <button type="reset"> Limpar </button>
+        </div>
+    </form>
+    
+    <footer class="">
+        <p>© 2024 Joia Rara. Todos os direitos reservados.</p>
+        <!-- Adicione mais informações conforme necessário -->
+        <p class="status"></p> 
+    </footer>
+</body>
+<script>
+    function formatar(mascara, documento) {
+    let i = documento.value.length;
+    let saida = '#';
+    let texto = mascara.substring(i);
+    while (texto.substring(0, 1) != saida && texto.length ) {
+      documento.value += texto.substring(0, 1);
+      i++;
+      texto = mascara.substring(i);
+    }
+  }
+</script>
+</html>
